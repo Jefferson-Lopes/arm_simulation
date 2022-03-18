@@ -1,8 +1,8 @@
 # Arm simulation
 
-## Move to ball
+## Random points
 
-![move to ball](move2ball.gif)
+![random](random.gif)
 
 ## Pick and place
 
