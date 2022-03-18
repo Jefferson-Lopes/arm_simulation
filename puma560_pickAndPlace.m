@@ -31,7 +31,9 @@ T6 = ctraj(t5, t6, 50); % a2 -> c2
 T = cat(3, T1, T2, T3, T4, T5, T6); % concat T1 ~ T6
 
 % calculate arm's joint angles during path
-q = p560.ikine6s(T);
+% also check the Denavit-Hartenberg to
+% determinate if the robot meets the criteria
+q = p560.ikine6s(T, 'ru'); % ru -> Rigth arm and elbow Up
 
 % draw dots at arm's simulation
 plot_sphere(h1, 0.05, 'g'); % hover 1 dot

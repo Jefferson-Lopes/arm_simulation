@@ -5,7 +5,7 @@ mdl_puma560;
 mxval_x = 0.5; mnval_x = -0.5;
 points_x = mnval_x + rand(3,1)*(mxval_x - mnval_x);
 
-mxval_y = 0.5; mnval_y = 0.2;
+mxval_y = -0.5; mnval_y = -0.2;
 points_y = mnval_y + rand(3,1)*(mxval_y - mnval_y);
 
 mxval_z = 0.5; mnval_z = -0.5;
@@ -28,7 +28,9 @@ T2 = ctraj(t2, t3, 50);
 T = cat(3, T1, T2); % concat T1 and T2
 
 % calculate arm's joint angles during path
-q = p560.ikine6s(T);
+% also check the Denavit-Hartenberg to
+% determinate if the robot meets the criteria
+q = p560.ikine6s(T, 'ru'); % ru -> Rigth arm and elbow Up
 
 % draw dots at arm's simulation
 plot_sphere(p1, 0.05, 'g'); % green dot
@@ -36,4 +38,5 @@ plot_sphere(p2, 0.05, 'y'); % yellow dot
 plot_sphere(p3, 0.05, 'r'); % red dot
 
 % animation arm's moviment
+%p560.plot(q, 'movie', 'random.gif');
 p560.plot(q, 'loop');
